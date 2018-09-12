@@ -4,10 +4,10 @@
 
 ### 项目整体框架包括（从上到下）：
 
-- [nginx 反向代理](#1)
-- [flask构建api接口](#2)
-- [tensorflow server](#3)
-- [tensor2tensor模型训练](#4)
+* [nginx 反向代理](#1)
+* [flask构建api接口](#2)
+* [tensorflow server](#3)
+* [tensor2tensor模型训练](#4)
 
 ### <span id="1">nginx 反向代理</span>
 
@@ -144,7 +144,7 @@ trans
 
 `en2zh`是导出的模型目录，`models.json`为主要的配置文件
 
-```json
+```
 model_config_list: {
   config: {
     name: "en-zh",
