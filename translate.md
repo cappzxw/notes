@@ -1,4 +1,4 @@
-##机器翻译项目
+## 机器翻译项目
 
 项目底层基于tensorflow和tensor2tensor的翻译模型，将训练好的模型通过tensorflow server加载到内存中，构建flask后台程序提供 `/translate` api接口以供调用。
 
