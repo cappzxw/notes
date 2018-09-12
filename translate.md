@@ -4,12 +4,12 @@
 
 ### 项目整体框架包括（从上到下）：
 
-* [nginx 反向代理](#1)
-* [flask构建api接口](#2)
-* [tensorflow server](#3)
-* [tensor2tensor模型训练](#4)
+* [nginx 反向代理](#nginx_反向代理)
+* [flask构建api接口](#flask构建api接口)
+* [tensorflow server](#tensorflow_server)
+* [tensor2tensor模型训练](#tensor2tensor模型训练)
 
-### <span id="1">nginx 反向代理</span>
+### nginx 反向代理
 
 翻译项目涉及到的语言有很多种，一般不一定部署在同一台机器上，所以需要反向代理将用户的请求代理到具体的机器上。项目中用OpenResty 实现nginx+lua的反向代理功能。
 
@@ -104,11 +104,11 @@ upstream tool-proxy-en-zh{     # source language - target language
 
 通过命令`ngnix -s reload` 重新加载服务
 
-###<span id="2">flask构建api接口</span>
+### flask构建api接口
 
 参照 [flask_tensor_api](https://github.com/cappzxw/flask_tensor_api)
 
-### <span id="3">tensorflow server</span>
+### tensorflow server
 
 tensorflow server是tensorflow自带的服务，将训练好的模型添加到内存中提供服务。项目中应用的是tensorflow server的最基本的grpc机制，上面介绍的flask构建的restful API 去请求grpc，tensorflow server也可以直接提供restful API 功能（学习中...）。
 
@@ -158,7 +158,7 @@ model_config_list: {
 
 tensorflow server 也提供gpu支持，源码编译时也提供很多种选择（学习中...）
 
-### <span id="4">tensor2tensor 模型训练</span>
+### tensor2tensor 模型训练
 
 主要参考tensor2tensor的github，[训练](https://github.com/tensorflow/tensor2tensor#translation)和[模型导出](https://github.com/tensorflow/tensor2tensor/blob/01af43d2b3e806035de461048a1d9fbe20f77bee/tensor2tensor/serving/README.md)介绍的都很详细。
 
