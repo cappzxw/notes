@@ -4,9 +4,9 @@
 
 ### 项目整体框架包括（从上到下）：
 
-* [nginx 反向代理](#nginx_反向代理)
+* [nginx 反向代理](#nginx-反向代理)
 * [flask构建api接口](#flask构建api接口)
-* [tensorflow server](#tensorflow_server)
+* [tensorflow server](#tensorflow-server)
 * [tensor2tensor模型训练](#tensor2tensor模型训练)
 
 ### nginx 反向代理
@@ -158,7 +158,7 @@ model_config_list: {
 
 tensorflow server 也提供gpu支持，源码编译时也提供很多种选择（学习中...）
 
-### tensor2tensor 模型训练
+### tensor2tensor模型训练
 
 主要参考tensor2tensor的github，[训练](https://github.com/tensorflow/tensor2tensor#translation)和[模型导出](https://github.com/tensorflow/tensor2tensor/blob/01af43d2b3e806035de461048a1d9fbe20f77bee/tensor2tensor/serving/README.md)介绍的都很详细。
 
