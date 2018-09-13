@@ -110,7 +110,7 @@ upstream tool-proxy-en-zh{     # source language - target language
 
 ### tensorflow server
 
-tensorflow server是tensorflow自带的服务，将训练好的模型添加到内存中提供服务。项目中应用的是tensorflow server的最基本的grpc机制，上面介绍的flask构建的restful API 去请求grpc，tensorflow server也可以直接提供restful API 功能（学习中...）。
+tensorflow server是tensorflow自带的服务，将训练好的模型添加到内存中提供服务。项目中应用的是tensorflow server的最基本的grpc机制，上面介绍的flask构建的restful API 去请求grpc，tensorflow server也可以直接提供[restful API](https://www.tensorflow.org/serving/api_rest) 功能，直接发送json格式的数据请求分类或者回归任务的result。但是输入的形式和模型的输入有关，对于翻译任务也需要把源语言的字符串转换成tensor2tensor模型输入的格式（研究中...）
 
 tensorflow server在centos上安装比较复杂，源码编译需要很多额外工具，编译的过程也很漫长。项目采用docker中安装tensorflow server的镜像，再运行容器来提供服务。
 
@@ -127,7 +127,7 @@ systemctl enable docker
 
 在官网上下载tensorflow server的[镜像](https://www.tensorflow.org/serving/docker)，或者下载简单预先构建的镜像`docker pull registry.cn-hangzhou.aliyuncs.com/xwzhang/tfserver:1.0` 
 
-下载好镜像后运行容器`docker run -d --name tfserver -p 8500:8000 -v /path/to/config:/config:ro  registry.cn-hangzhou.aliyuncs.com/xwzhang/tfserver:1.0`
+下载好镜像后运行容器`docker run -d --name tfserver -p 8500:8500 -v /path/to/config:/config:ro  registry.cn-hangzhou.aliyuncs.com/xwzhang/tfserver:1.0`
 
 `-v`后的参数是将本地的配置文件目录挂载到容器中，配置文件包括主配置文件和tensor2tensor训练好并且导出的模型。
 
@@ -154,7 +154,7 @@ model_config_list: {
 }
 ```
 
-如果是官网提供的镜像，需要在容器中运行启动服务的命令`tensorflow_model_server --port=9000 --model_config_file=/path/to/model.js`
+如果是官网提供的镜像，需要在容器中运行启动服务的命令`tensorflow_model_server --port=8500 --model_config_file=/path/to/model.js`
 
 tensorflow server 也提供gpu支持，源码编译时也提供很多种选择（学习中...）
 
